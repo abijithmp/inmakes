@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'login/css/style_register.css' %}">
+</head>
+<body style="background-image:url({% static 'login/image/gg.jpeg' %})">
+<form action="register" method="post">
+    {% csrf_token %}
+
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div><h1><span>Sign Up</span></h1></div>
+    </div>
+    <br>
+    <div class="login">
+        <input type="text" name="user_name" placeholder="Enter username"><br/><br/>
+        <input type="text" name="first_name" placeholder="Enter first name"><br/><br/>
+        <input type="text" name="last_name" placeholder="Enter last name"><br>
+        <input type="email" name="email" placeholder="Enter email"><br>
+        <input type="password" name="password" placeholder="Enter password"><br>
+        <input type="password" name="password_1" placeholder="Confirm password"><br>
+        <input type="submit">
+
+    </div>
+
+
+</form>
+{% for i in messages %}
+<div class="header">
+    <br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div><h1>{{i}}</h1></div>
+</div>
+{% endfor %}
+
+</body>
+</html>
