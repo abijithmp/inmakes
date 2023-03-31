@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% if category %}
+{{ category.description|truncatewords:155}}
+{% else %}
+Welcome To Shop Cart Provides What You Need....
+{% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+{{category.name}} - Shop Cart
+{% else %}
+See Our Collections - Shop Cart
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if category %}
+<div>
+    <div class="row my_row_class">
+        <div class="mx-auto">
+            <p><a href="{% url 'shop:allProdCat' %}">Our Collections</a></p>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+<div class="mx-auto">
+    {% if category %}
+    <img class="my_image" src="{{category.image.url}}" alt="{{category.name}}">
+</div>
+<br/>
+<div>
+    <h1 class="text-center my_title">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+</div>
+{% else %}
+<div>
+    <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" alt="Our Products" style="width:100%;height:250px;">
+</div>
+<br/>
+<div>
+    <h1 class="text-center my_title">Products</h1>
+    <h4 class="text-justify"> food, substance consisting essentially of protein, carbohydrate, fat, and other nutrients
+        used in the body of an
+        organism to sustain growth and vital processes and to furnish energy. The absorption and utilization of food by
+        the body is fundamental to nutrition and is facilitated by digestion. Plants, which convert solar energy to food
+        by photosynthesis, are the primary food source. Animals that feed on plants often serve as sources of food for
+        other animals. To learn more about the sequence of transfers of matter and energy in the form of food from
+        organism to organism, see food chain.
+
+        Hunting and gathering, horticulture, pastoralism, and the development of agriculture are the primary means by
+        which humans have adapted to their environments to feed themselves. Food has long served as a carrier of culture
+        in human societies and has been a driving force for globalization. This was especially the case during the early
+        phases of European trade and colonial expansion, when foods such as the hot red pepper, corn (maize), and sweet
+        potatoes spread throughout Europe to Africa and Asia.</h4>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row mx_auto">
+        {% for product in products.object_list %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}" style="width:100%;height:400px;"> </a>
+                <div class="card-body">
+                    <h2>{{product.name}}</h2>
+                    <h2>{{product.price}}</h2>
+
+                </div>
+
+            </div>
+            <br>
+
+        </div>
+
+        {% endfor %}
+    </div>
+    <div class="mx-auto">
+        {% if products.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
