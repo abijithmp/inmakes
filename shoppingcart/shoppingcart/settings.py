@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "shopping_cart",
     "search_app",
     "cart",
+    "home",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
