@@ -1,0 +1,58 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="container-fluid sticky-top bg-white shadow-sm">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="/" class="navbar-brand">
+                <h1 class="m-0 text-uppercase text-primary">Simple Bank</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<form action="login" method="post">
+        {% csrf_token %}
+    <!--    <input type="text" name="user_name" placeholder="Enter username">-->
+    <!--    <input type="password" name="password" placeholder="Enter password">-->
+    <!--    <input type="password" name="password_1" placeholder="Confirm password">-->
+    <!--    <input type="submit">-->
+    <div class="body"></div>
+    <div class="grad"></div>
+    <div class="header">
+        <div><span><h1>Log In</h1></span></div>
+    </div>
+    <br>
+    <div class="login">
+        <h3><input type="text" placeholder="username" name="user_name"   ></h3><br>
+        <h3><input type="password" placeholder="password" name="password"></h3><br>
+        <h3><input type="submit" value="Login"></h3><br>
+        <br><br><br><br><br><br>
+
+    </div>
+
+</form>
+{% for i in messages %}
+
+<div class="header">
+    <br/><br/>
+    <br/><br/>
+        <div><h1>{{i}}</h1></div>
+    </div>
+{% endfor %}
+
+{% endblock %}

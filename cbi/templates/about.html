@@ -1,0 +1,64 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="container-fluid sticky-top bg-white shadow-sm">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="/" class="navbar-brand">
+                <h1 class="m-0 text-uppercase text-primary">Simple Bank</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div>
+    <br><br><br>
+  <form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-success">
+      <br>
+      <br>
+      <br>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_district").change(function () {
+        const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countryId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'district_id': countryId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_branch").html(data);  // replace the contents of the city input with the data that came from the server
+
+            }
+        });
+
+    });
+</script>
+</div>
+
+
+
+{% endblock %}
+
+
+
