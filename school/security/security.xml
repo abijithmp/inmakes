@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+
+        <!-- Define the manager user group -->
+        <record id="group_manager" model="res.groups">
+            <field name="name">Manager Group</field>
+        </record>
+
+        <!-- Define the employee user group -->
+        <record id="group_employee" model="res.groups">
+            <field name="name">Employee Group</field>
+        </record>
+
+    </data>
+</odoo>
+
+
+
+

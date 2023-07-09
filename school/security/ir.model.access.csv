@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_manager_model,Manager Access Model,model_school_student,school.group_manager,1,1,1,1
+access_employee_model,Employee Access Model,model_school_student,school.group_employee,1,1,1,0
